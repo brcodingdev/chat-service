@@ -23,7 +23,7 @@ func (a *AuthAPI) Login(w http.ResponseWriter, r *http.Request) {
 	loginRequest := request.LoginRequest{}
 	err := parseBody(r, &loginRequest)
 	if err != nil {
-		errResponse(errors.ErrInRequestMarshaling, w)
+		errResponse(errors.ErrInRequest, w)
 		return
 	}
 
@@ -48,7 +48,7 @@ func (a *AuthAPI) SignUp(w http.ResponseWriter, r *http.Request) {
 	signUpRequest := request.SignUpRequest{}
 	err := parseBody(r, &signUpRequest)
 	if err != nil {
-		errResponse(errors.ErrInRequestMarshaling, w)
+		errResponse(errors.ErrInRequest, w)
 		return
 	}
 

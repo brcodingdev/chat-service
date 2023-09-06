@@ -23,7 +23,7 @@ func Authenticated(next http.Handler) http.Handler {
 		)
 		jwtSecret := os.Getenv("JWT_SECRET")
 		if len(authHeader) != 2 {
-			handleAuthenticationErr(w, errors.ErrMalformedToken)
+			handleAuthenticationErr(w, errors.ErrToken)
 			return
 		}
 

@@ -39,7 +39,7 @@ func (a *AuthApp) Login(
 	user, err := a.userRepository.GetUserByEmail(email)
 
 	if err != nil || user.ID <= 0 {
-		return response.LoginResponse{}, errors.ErrInvalidCredentials
+		return response.LoginResponse{}, errors.ErrInvalidLogin
 	}
 
 	jwtTTL, err := strconv.Atoi(os.Getenv("JWT_TTL"))
@@ -55,7 +55,7 @@ func (a *AuthApp) Login(
 	)
 	// password does not match
 	if errf != nil && errf == bcrypt.ErrMismatchedHashAndPassword {
-		return response.LoginResponse{}, errors.ErrInvalidCredentials
+		return response.LoginResponse{}, errors.ErrInvalidLogin
 	}
 
 	tk := &model.Token{
@@ -91,7 +91,7 @@ func (a *AuthApp) SignUp(
 	}
 
 	if user.ID > 0 {
-		return response.SignUpResponse{}, errors.ErrDuplicateEmail
+		return response.SignUpResponse{}, errors.ErrDupEmail
 	}
 
 	jwtTTL, err := strconv.Atoi(os.Getenv("JWT_TTL"))

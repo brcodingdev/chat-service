@@ -42,7 +42,7 @@ func (c *ChatAPI) Create(w http.ResponseWriter, r *http.Request) {
 	createRoomRequest := request.ChatRoomCreateRequest{}
 	err := parseBody(r, &createRoomRequest)
 	if err != nil {
-		errResponse(errors.ErrInRequestMarshaling, w)
+		errResponse(errors.ErrInRequest, w)
 		return
 	}
 
@@ -66,7 +66,7 @@ func (c *ChatAPI) ChatRoomMessages(w http.ResponseWriter, r *http.Request) {
 	chatMessagesRequest := request.ChatRoomMessagesRequest{}
 	err := parseBody(r, &chatMessagesRequest)
 	if err != nil {
-		errResponse(errors.ErrInRequestMarshaling, w)
+		errResponse(errors.ErrInRequest, w)
 		return
 	}
 
