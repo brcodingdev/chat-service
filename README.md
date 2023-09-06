@@ -76,5 +76,4 @@ $ make test
 
 ## TODO
  - More Unit Tests
- - Run inside docker container
  - Improve the code with the best practices in Golang
