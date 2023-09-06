@@ -46,14 +46,14 @@ RABBIT_HOST=localhost
 
 ## Run
 
-### build docker image
+### build docker image (optional)
 
 ```bash
 # builds an image
 $ make build-docker
 ```
 
-### run outside docker
+### run outside docker (optional)
 
 ```bash
 # run the service
