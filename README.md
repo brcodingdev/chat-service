@@ -25,13 +25,46 @@ Chat Service is a messaging application that enables users to send messages in c
 - chat-frontend: The frontend application that allows run commands. <br/>
   <b>Repo: https://github.com/brcodingdev/chat-frontend.git </b>
 
-## Setup and run
- - Update .env file
+## Setup
+Update .env file, env vars:
+
+```
+#PostgreSQL
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=chat
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+ 
+#RabbitMQ  
+
+RABBIT_USERNAME=guest
+RABBIT_PASSWORD=guest
+RABBIT_HOST=localhost
+```
+
 ## Run
+
+### build docker image
+
+```bash
+# builds an image
+$ make build-docker
+```
+
+### run outside docker
 
 ```bash
 # run the service
 $ make run
+```
+
+### run with docker
+
+```bash
+# run inside container
+$ make run-docker
 ```
 
 ### Test
@@ -40,7 +73,6 @@ $ make run
 # run tests
 $ make test
 ```
-
 
 ## TODO
  - More Unit Tests
