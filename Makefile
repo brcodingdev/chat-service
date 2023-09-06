@@ -14,7 +14,15 @@ build:
 	@echo "Building"
 	@go build -o chatservice ./cmd
 
+build-docker:
+	@echo "Building docker image"
+	@docker-compose build
+
 run:
 	@echo "Starting chat service"
 	@docker-compose up -d
 	@go run ./cmd
+
+run-docker:
+	@echo "Starting chat service with docker"
+	@docker-compose up -d
