@@ -16,6 +16,9 @@ RUN apk update \
 WORKDIR /app
 COPY .env /app/.env
 
+ENV DB_HOST=host.docker.internal
+ENV RABBIT_HOST=host.docker.internal
+
 COPY --from=builder /go/src/github.com/brcodingdev/chat-service/chatservice .
 
 CMD ["./chatservice"]
