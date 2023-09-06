@@ -1,0 +1,54 @@
+package api
+
+import (
+	"encoding/json"
+	"github.com/brcodingdev/chat-service/internal/errors"
+	"github.com/brcodingdev/chat-service/internal/port/http/response"
+	"io"
+	"net/http"
+)
+
+type JWTProps string
+
+// ParseBody ...
+func parseBody(r *http.Request, x interface{}) error {
+	if body, err := io.ReadAll(r.Body); err == nil {
+		if err := json.Unmarshal(body, x); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func ok(res []byte, w http.ResponseWriter) {
+	w.WriteHeader(http.StatusOK)
+	w.Write(res)
+}
+
+// ErrResponse ...
+func errResponse(err error, w http.ResponseWriter) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	errCode := codeFrom(err)
+	w.WriteHeader(errCode)
+	res := response.ErrorResponse{
+		Message: err.Error(),
+		Status:  false,
+		Code:    errCode,
+	}
+	data, _ := json.Marshal(res)
+	w.Write(data)
+}
+
+// codeFrom returns the http status code from service errors
+func codeFrom(err error) int {
+	switch err {
+	case errors.ErrInvalidCredentials:
+		return http.StatusBadRequest
+	case errors.ErrDuplicateEmail:
+		return http.StatusBadRequest
+	case errors.ErrInRequestMarshaling:
+		return http.StatusBadRequest
+	default:
+		return http.StatusInternalServerError
+	}
+}
