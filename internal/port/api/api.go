@@ -42,7 +42,7 @@ func errResponse(err error, w http.ResponseWriter) {
 // codeFrom returns the http status code from service errors
 func codeFrom(err error) int {
 	switch err {
-	case errors.ErrInvalidLogin:
+	case errors.ErrInCredentials:
 		return http.StatusBadRequest
 	case errors.ErrDupEmail:
 		return http.StatusBadRequest

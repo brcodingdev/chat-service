@@ -5,8 +5,8 @@ import (
 )
 
 var (
-	ErrInvalidLogin = errors.New("invalid login")
-	ErrInRequest    = errors.New("bad request")
-	ErrDupEmail     = errors.New("email already exists")
-	ErrToken        = errors.New("error jwt token")
+	ErrInCredentials = errors.New("invalid credentials")
+	ErrInRequest     = errors.New("bad request")
+	ErrDupEmail      = errors.New("email already exists")
+	ErrToken         = errors.New("error jwt token")
 )
